@@ -33,6 +33,7 @@ public class PlaneTypeServiceImpl implements PlaneTypeService {
         updatePlane.setCapacity(planetype.getCapacity());
         updatePlane.setModel(planetype.getModel());
         updatePlane.setWeight(planetype.getWeight());
+        updatePlane.setStatus(planetype.isStatus());
 
         return planetypeRepository.save(updatePlane);
     }
@@ -40,6 +41,16 @@ public class PlaneTypeServiceImpl implements PlaneTypeService {
     @Override
     public List<Planetype> getAllPlaneType() {
         return  planetypeRepository.findAll();
+    }
+
+    @Override
+    public List<Planetype> getAllActivePlaneType() {
+        return planetypeRepository.findByStatus(true);
+    }
+
+    @Override
+    public List<Planetype> getAllDeactivatePlaneType() {
+        return planetypeRepository.findByStatus(false);
     }
 
 

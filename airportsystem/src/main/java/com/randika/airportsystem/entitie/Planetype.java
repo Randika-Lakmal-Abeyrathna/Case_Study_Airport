@@ -1,9 +1,6 @@
 package com.randika.airportsystem.entitie;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 @ToString
+@Builder
 public class Planetype {
 
     @Id
@@ -26,5 +24,6 @@ public class Planetype {
     private int capacity;
     @NotNull
     private double weight;
+    private boolean status;
 
 }
