@@ -13,4 +13,8 @@ public interface PlaneTypeService {
 
     List<Planetype> getAllPlaneType();
 
+    List<Planetype> getAllActivePlaneType();
+
+    List<Planetype> getAllDeactivatePlaneType();
+
 }

@@ -7,10 +7,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class PlaneTypeServiceImpl implements PlaneTypeService {
 
     @Autowired
@@ -24,7 +26,7 @@ public class PlaneTypeServiceImpl implements PlaneTypeService {
 
     @Override
     public Planetype getPlaneTypeByID(Integer id) {
-        return planetypeRepository.findById(id).orElseThrow(()-> new ResourceNotFound("Plane Type Not Found"));
+        return planetypeRepository.findById(id).orElseThrow(()-> new ResourceNotFound("Plane Type not found with id: "+id));
     }
 
     @Override
@@ -33,6 +35,7 @@ public class PlaneTypeServiceImpl implements PlaneTypeService {
         updatePlane.setCapacity(planetype.getCapacity());
         updatePlane.setModel(planetype.getModel());
         updatePlane.setWeight(planetype.getWeight());
+        updatePlane.setStatus(planetype.isStatus());
 
         return planetypeRepository.save(updatePlane);
     }
@@ -40,6 +43,16 @@ public class PlaneTypeServiceImpl implements PlaneTypeService {
     @Override
     public List<Planetype> getAllPlaneType() {
         return  planetypeRepository.findAll();
+    }
+
+    @Override
+    public List<Planetype> getAllActivePlaneType() {
+        return planetypeRepository.findByStatus(true);
+    }
+
+    @Override
+    public List<Planetype> getAllDeactivatePlaneType() {
+        return planetypeRepository.findByStatus(false);
     }
 
 

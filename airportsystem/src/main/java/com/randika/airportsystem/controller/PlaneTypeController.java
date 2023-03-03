@@ -36,6 +36,18 @@ public class PlaneTypeController {
         return new ResponseEntity<>(allPlaneType,HttpStatus.OK);
     }
 
+    @GetMapping("/active")
+    public ResponseEntity<List<Planetype>> getAllActivePlaneType(){
+        List<Planetype> allActivePlaneType = planeTypeService.getAllActivePlaneType();
+        return new ResponseEntity<>(allActivePlaneType,HttpStatus.OK);
+    }
+
+    @GetMapping("/deactivate")
+    public ResponseEntity<List<Planetype>> getAllDeactivatePlaneType(){
+        List<Planetype> allDeactivatePlaneType = planeTypeService.getAllDeactivatePlaneType();
+        return new ResponseEntity<>(allDeactivatePlaneType,HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
     public  ResponseEntity<Planetype> updatePlaneType(@PathVariable Integer id, @RequestBody Planetype planetype){
         Planetype updatePlanetype = planeTypeService.updatePlanetype(id, planetype);

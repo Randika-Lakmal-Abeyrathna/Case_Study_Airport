@@ -1,9 +1,6 @@
 package com.randika.airportsystem.entitie;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,6 +11,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Data
 @ToString
+@Builder
 public class Airplane {
 
     @Id
@@ -25,5 +23,6 @@ public class Airplane {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "planetype_id",referencedColumnName = "id")
     private Planetype planetype;
+    private boolean status;
 
 }
