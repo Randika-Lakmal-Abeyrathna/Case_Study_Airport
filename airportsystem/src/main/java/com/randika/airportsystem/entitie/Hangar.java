@@ -1,9 +1,6 @@
 package com.randika.airportsystem.entitie;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +10,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 @ToString
+@Builder
 public class Hangar {
 
     @Id
