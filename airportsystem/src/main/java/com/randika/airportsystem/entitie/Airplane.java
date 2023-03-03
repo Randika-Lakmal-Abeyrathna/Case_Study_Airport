@@ -23,5 +23,6 @@ public class Airplane {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "planetype_id",referencedColumnName = "id")
     private Planetype planetype;
+    private boolean status;
 
 }

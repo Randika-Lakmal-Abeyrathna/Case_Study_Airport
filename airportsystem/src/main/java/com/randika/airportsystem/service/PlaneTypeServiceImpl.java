@@ -7,10 +7,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class PlaneTypeServiceImpl implements PlaneTypeService {
 
     @Autowired
@@ -24,7 +26,7 @@ public class PlaneTypeServiceImpl implements PlaneTypeService {
 
     @Override
     public Planetype getPlaneTypeByID(Integer id) {
-        return planetypeRepository.findById(id).orElseThrow(()-> new ResourceNotFound("Plane Type Not Found"));
+        return planetypeRepository.findById(id).orElseThrow(()-> new ResourceNotFound("Plane Type not found with id: "+id));
     }
 
     @Override
