@@ -25,4 +25,9 @@ public class Airplane {
     private Planetype planetype;
     private boolean status;
 
+    public Airplane(String code, Planetype planetype, boolean status) {
+        this.code = code;
+        this.planetype = planetype;
+        this.status = status;
+    }
 }
