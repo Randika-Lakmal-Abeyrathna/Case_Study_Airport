@@ -23,5 +23,9 @@ public class Hangar {
     @JoinColumn(name = "airplane_id",referencedColumnName = "id")
     private Airplane airplane;
 
-
+    public Hangar(String location, boolean status, Airplane airplane) {
+        this.location = location;
+        this.status = status;
+        this.airplane = airplane;
+    }
 }
