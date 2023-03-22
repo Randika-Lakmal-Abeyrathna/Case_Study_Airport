@@ -26,4 +26,10 @@ public class Planetype {
     private double weight;
     private boolean status;
 
+    public Planetype(String model, int capacity, double weight, boolean status) {
+        this.model = model;
+        this.capacity = capacity;
+        this.weight = weight;
+        this.status = status;
+    }
 }
