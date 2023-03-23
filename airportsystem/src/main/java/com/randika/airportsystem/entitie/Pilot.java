@@ -27,4 +27,9 @@ public class Pilot {
     @NotNull
     private String lastname;
 
+    public Pilot(String licence, String firstname, String lastname) {
+        this.licence = licence;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 }
