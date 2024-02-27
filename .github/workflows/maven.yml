@@ -1,0 +1,39 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+
+      - name: Build Spring Boot application
+        run: mvn clean install
+
+      - name: Connect to EC2 instance
+        uses: nanz/ssh-action@v3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            # Stop the running service
+            sudo service dev stop
+
+            # Backup current jar file with timestamp
+            DATE=$(date +"%Y%m%d-%H%M%S")
+            mv /var/www/dev/demo.jar /var/www/dev/demo-bk-${DATE}.jar
+
+            # Upload new jar file
+            scp target/demo.jar ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/var/www/dev/demo.jar
+
+            # Start the service
+            sudo service dev start
